@@ -6,6 +6,7 @@ import State02 from './components/State02';
 import Props01 from './components/Props01';
 import Practice001 from './Practice/Practice001';
 import Props02 from './components/Props02';
+import Quiz002 from './Practice/Quiz002';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
   // return <Props01/>;
   return <Props02/>;
   // return <Practice001/>;
+  // return <Quiz002/>;
 }
 
 export default App;
