@@ -8,6 +8,8 @@ import Practice001 from './Practice/Practice001';
 import Props02 from './components/Props02';
 import Quiz002 from './Practice/Quiz002';
 import NewsBlog from './newsblog/Newsblog';
+import Quiz003 from './Practice/Quiz003';
+import Practice002 from './Practice/Practice002';
 
 function App() {
 
@@ -20,7 +22,9 @@ function App() {
   // return <Props02/>;
   // return <Practice001/>;
   // return <Quiz002/>;
-  return <NewsBlog/>;
+  // return <NewsBlog/>;
+  // return <Quiz003/>;
+  return <Practice002/>;
 }
 
 export default App;
