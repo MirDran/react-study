@@ -12,7 +12,6 @@ import Quiz003 from './Practice/Quiz003';
 import Practice002 from './Practice/Practice002';
 import Quiz004 from './Practice/Quiz004';
 import FoodMarket from './foodmarket/FoodMarket';
-import FoodCard from './data/FoodCard';
 
 function App() {
 

@@ -12,7 +12,7 @@ let foodsData = [
     title : "French Fries",
     content : "정신에 좋은 감자튀김",
     price : 9000,
-    imgPath: '/image/food1.jpg'
+    imgPath: '/image/food2.jpg'
     },
     
     {
@@ -20,7 +20,7 @@ let foodsData = [
     title : "Hamburger",
     content : "완전식품 햄버거",
     price : 11000,
-    imgPath: '/image/food1.jpg'
+    imgPath: '/image/food3.jpg'
     }
     ] ;
     

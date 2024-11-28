@@ -13,7 +13,7 @@ function FoodCard({ food , foods, index }) {// props = {foods: {title: ''}}
 
     return (
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={process.env.PUBLICK_URL + food.imgPath} />
+            <Card.Img variant="top" src={process.env.PUBLIC_URL + food.imgPath} />
             <Card.Body>
                 <Card.Title>{food.title}</Card.Title>
                 <Card.Text>{food.content}</Card.Text>
