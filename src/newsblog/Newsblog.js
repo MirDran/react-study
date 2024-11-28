@@ -14,11 +14,15 @@ function NewsBlog() {
     let [news3, setNews3] = useState('내일의 뉴스');
     let [news, setNews] = useState(['오늘의 뉴스', '어제의 뉴스', '내일의 뉴스']);
 
-    let [cnt1, setCnt1] = useState([0, 0, 0]);
+    let [cnt, setCnt] = useState([0, 0, 0]);
     let index = 0;
 
     let [modalFlag, setModalFlag] = useState(false);
     let [chn, setChn] = useState(['Today News', 'Yesterday News', 'Tomorrow News']);
+
+    let [selectiedTitle, setSelectiedTitle] = useState(' ');
+    let [selCnt, setSelCnt] = useState(0);
+    let [inputText,setInputText] = useState('');
 
     return (
         <>
@@ -28,21 +32,38 @@ function NewsBlog() {
             </div>
 
             {
-                news.map((item, index) => {
+                news.map((item, index) => { //item 오늘의뉴스 , index 0
+                    //반복 됨
+                    // item , index
+                    // 오늘의 뉴스 , 0
+                    // 어제의 뉴스 , 1
+                    // 내일의 뉴스 , 2
+
                     return (
                         <div className="post-list">
                             <h4>
-                                <span onClick={() => {
-                                    setModalFlag(!modalFlag);
+                                <span onClick={() => { //제목 클릭
+                                    setSelectiedTitle(item);
+                                    //어떤 뉴스를 눌렀나
+                                    setModalFlag(!modalFlag); //모달창 on/off전환
+                                    setSelCnt(cnt[index]);// 모달창이 ON이 되고 보이는 상태에서 바뀌어야 해서 
                                 }}>{news[index]}
                                 </span>
                                 <span onClick={() => {
-                                    let temp = [...cnt1];
+                                    let temp = [...cnt];
                                     temp[index]++;
-                                    setCnt1(temp);
+                                    setCnt(temp);
                                 }}> ♥ </span>
-                                {cnt1[index]} </h4>
+                                {cnt[index]} </h4>
                             <p>내용 무</p>
+                            <button onClick={()=>{
+                                let temp = [...news];
+                                let temp2 = [...cnt];
+                                temp.splice([index],1);
+                                temp2.splice([index],1);
+                                setNews(temp);
+                                setCnt(temp2);
+                            }}>삭제</button>
                         </div>
                     )
                 })
@@ -54,8 +75,6 @@ function NewsBlog() {
 
                 let temp = [...news]; //deep copy
                 temp[0] = 'Today News'; // 0인덱스 값 변경
-                temp[1] = 'Yesterday News'
-                temp[2] = 'Tomorrow News'
                 setNews(temp);  //news = temp;
 
                 // temp.shift(); // ['어제의 뉴스','내일의 뉴스'];
@@ -65,9 +84,53 @@ function NewsBlog() {
 
             }}>제목 변경</button>
 
+            <div>
+                <input type='text' id='input_news' value={inputText} onChange={(event)=>{// 입력을 받고 있을 때 뭐 할꺼냐
+                    // console.log(event);
+                    // console.log(event.target.value);
+                    setInputText(event.target.value);
+                }}></input>
+                
+                <button onClick={()=>{
+                    
+
+                    //전제조건 : 양측에 있는 띄어쓰기는 제외 (trim 제외)
+                    inputText = inputText.trim();
+
+                    if(inputText == ''){ 
+                         // 밑의 inputText는 들어가 있기 때문에 inputText= inputText.trim()으로 부르기
+
+                        alert('값을 입력하세요');
+                        setInputText('');
+                    }
+                    else{
+                        let temp = [...news];
+                        temp.push(inputText);
+                        setNews(temp);
+
+                        cnt.push(0);
+                        setInputText('');
+                    }
+                    //입력된 값 확인
+                    // //news 배열에 추가 저장 //javaScript 방식
+                    // let title = document.getElementById('input_news').value;
+                    // console.log(title);
+
+                    // let temp = [...news];
+                    // temp.push(title);
+                    // setNews(temp);
+
+                    // document.getElementById('input_news').value = '';
+
+                }}>발행</button>
+            </div>
+
             {
-                modalFlag == true ? <Modal news={news} setNews={setNews} bgColor={'lightgreen'}/> : null
+                modalFlag == true ? <Modal title={selectiedTitle} news={news} 
+                setNews={setNews} cnt={selCnt} 
+                bgColor={'lightgreen'} /> : null
             }
+
 
 
             {/* <div className="post-list">
