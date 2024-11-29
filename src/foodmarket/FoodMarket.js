@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
 import FoodCard from './components/FoodCard';
+import Detail from './pages/Detail';
 
 
 function FoodMarket() {
@@ -49,7 +50,9 @@ function FoodMarket() {
             <Routes>
                 <Route path="/" element={<Home foods={foods}/>}/>
                 <Route path="/info" element={<h1>info page</h1>}/>
-                <Route path="/detail" element={<h1>detail page</h1>}/>
+                {/* <Route path="/detail/:index" element={<Detail foods = {foods}/>}/> */}
+                <Route path="/detail/:id" element={<Detail foods = {foods}/>}/> 
+                <Route path="*" element={<div>찾을 수없습니다. 주소를 확인하세요.</div>}/>
             </Routes>
 
 
